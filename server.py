@@ -18,15 +18,15 @@ class ServerData:
     def __init__(self):
         self.profiles = {}
         self.location = {}
-        self.re_ratio_id = re.compile(r'/ratios/(\d+)$')
-        self.re_ratio_id_location = re.compile(r'/ratios/(\d+)/location$')
+        self.re_radio_id = re.compile(r'/radios/(\d+)$')
+        self.re_radio_id_location = re.compile(r'/radios/(\d+)/location$')
 
 
 _server_data = ServerData()
 
 
 def post_profile(url, get_post_data):
-    match = re.match(_server_data.re_ratio_id, url.path)
+    match = re.match(_server_data.re_radio_id, url.path)
     if not match:
         return False, 0
     uid = int(match.group(1))
@@ -39,7 +39,7 @@ def post_profile(url, get_post_data):
 
 
 def post_location(url, get_post_data):
-    match = re.match(_server_data.re_ratio_id_location, url.path)
+    match = re.match(_server_data.re_radio_id_location, url.path)
     if not match:
         return False, 0
     uid = int(match.group(1))
@@ -64,7 +64,7 @@ def post_location(url, get_post_data):
 
 
 def get_location(url):
-    match = re.match(_server_data.re_ratio_id_location, url.path)
+    match = re.match(_server_data.re_radio_id_location, url.path)
     if not match:
         return False, 0, None
 
